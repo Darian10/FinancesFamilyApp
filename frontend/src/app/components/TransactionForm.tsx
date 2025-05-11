@@ -41,7 +41,7 @@ export default function TransactionForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 space-y-4 max-w-md mx-auto bg-gray-900 text-white shadow-lg rounded-lg">
+    <form onSubmit={handleSubmit} className="p-4 space-y-6 max-w-md mx-auto bg-gray-900 text-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold text-center">Nueva Transacción</h2>
   
       <select
