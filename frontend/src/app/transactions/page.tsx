@@ -8,8 +8,6 @@ import { Plus } from 'lucide-react'
 export default function TransactionsPage() {
   const [showForm, setShowForm] = useState(false)
 
-  const modalClass = showForm ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-
   return (
     <main className="relative min-h-screen bg-gray-100 p-6 text-black">
       <h1 className="text-2xl font-bold mb-4">Transacciones</h1>

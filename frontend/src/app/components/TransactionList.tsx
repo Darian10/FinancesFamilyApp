@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback} from 'react'
 import { Transaction } from '../types/Transaction'
 
 export default function TransactionList() {
@@ -13,7 +13,7 @@ export default function TransactionList() {
   const [pageSize] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchTransactions = async () => {
+  const fetchTransactions = useCallback (async () => {
     setLoading(true);
     const params = new URLSearchParams({
       from: fromDate.toISOString(),
@@ -32,15 +32,17 @@ export default function TransactionList() {
       setTransactions(data.items);
       setTotalPages(data.totalPages);
     } catch (err) {
+      console.error('Error al cargar las transacciones:', err);
       alert('Error al cargar las transacciones');
     } finally {
       setLoading(false);
     }
-  };
+  }, [page]);
 
+  // Usamos useCallback para evitar que la función cambie en cada renderizado
   useEffect(() => {
     fetchTransactions();
-  }, [page]);
+  }, [fetchTransactions]); // <- ahora sí se puede poner como dependencia sin warning
 
   const handleBuscar = () => {
     setPage(1);
