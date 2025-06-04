@@ -12,6 +12,11 @@ const defaultData: Transaction = {
 }
 
 export default function TransactionForm() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  if (!apiUrl) {
+    throw new Error("REACT_APP_API_URL is not defined");
+  }
+
   const [formData, setFormData] = useState<Transaction>(defaultData)
   const [loading, setLoading] = useState(false)
 
@@ -24,7 +29,7 @@ export default function TransactionForm() {
     e.preventDefault()
     setLoading(true)
 
-    const response = await fetch('http://localhost:3000/api/transactions', {
+    const response = await fetch(`${apiUrl}/api/transactions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),

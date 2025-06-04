@@ -14,6 +14,11 @@ export default function TransactionList() {
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchTransactions = useCallback (async () => {
+    const apiUrl = process.env.REACT_APP_API_URL;
+    if (!apiUrl) {
+      throw new Error("REACT_APP_API_URL is not defined");
+    }
+
     setLoading(true);
     const params = new URLSearchParams({
       from: fromDate.toISOString(),
@@ -27,7 +32,7 @@ export default function TransactionList() {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/transactions?${params}`);
+      const res = await fetch(`${apiUrl}/api/transactions?${params}`);
       const data = await res.json();
       setTransactions(data.items);
       setTotalPages(data.totalPages);

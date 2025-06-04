@@ -7,8 +7,12 @@ import { useEffect, useState } from "react"
 export default function Home() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+  if (!apiUrl) {
+    throw new Error("REACT_APP_API_URL is not defined");
+  }
   useEffect(() => {
-    fetch('http://localhost:3000/api/Transactions/all')
+    fetch(`${apiUrl}/api/Transactions/all`)
       .then(res => res.json())
       .then(data => setTransactions(data))
   }, [])
