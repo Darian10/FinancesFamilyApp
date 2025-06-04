@@ -8,7 +8,7 @@ export default function Home() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/transactions')
+    fetch('http://localhost:3000/api/Transactions/all')
       .then(res => res.json())
       .then(data => setTransactions(data))
   }, [])
