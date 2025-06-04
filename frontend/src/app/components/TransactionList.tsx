@@ -14,9 +14,9 @@ export default function TransactionList() {
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchTransactions = useCallback (async () => {
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (!apiUrl) {
-      throw new Error("REACT_APP_API_URL is not defined");
+      throw new Error("NEXT_PUBLIC_API_URL is not defined");
     }
 
     setLoading(true);

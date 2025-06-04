@@ -12,9 +12,9 @@ const defaultData: Transaction = {
 }
 
 export default function TransactionForm() {
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!apiUrl) {
-    throw new Error("REACT_APP_API_URL is not defined");
+    throw new Error("NEXT_PUBLIC_API_URL is not defined");
   }
 
   const [formData, setFormData] = useState<Transaction>(defaultData)
